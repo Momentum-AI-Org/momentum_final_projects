@@ -4,7 +4,13 @@ import numpy as np
 import PIL
 from PIL import Image
 
-from utils.constants import IMG_FORMAT, IMG_SIZE
+from utils.constants import CLASS_DATA_INDEX_SUFFIX, IMG_FORMAT, IMG_SIZE
+
+
+def get_index_file_name(x: str, suffix: str = CLASS_DATA_INDEX_SUFFIX) -> str:
+    """Get name of index file storing class image data from name of class"""
+    x = x.lower().replace(" ", "_")
+    return f"{x}_{CLASS_DATA_INDEX_SUFFIX}.json"
 
 
 def model_ready_img(img: PIL.Image.Image) -> PIL.Image.Image:

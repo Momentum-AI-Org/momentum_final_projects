@@ -7,6 +7,11 @@ from torchsummary import summary
 from tqdm import tqdm
 
 from data.image_classification_dataset import get_datasets
+from evaluate import (
+    get_classification_accuracy,
+    visualize_loss_curves,
+    visualize_model_predictions,
+)
 from models.img_class_predictor import SimpleCNN
 from utils.constants import IMG_SIZE
 from utils.helpers import round_with_prec
@@ -38,32 +43,7 @@ def val_step(
     device: torch.device,
 ) -> float:
     """Validation step. Return classification accuracy"""
-
-    model.eval()
-    dataloader = DataLoader(
-        dset,
-        batch_size=batch_size,
-        shuffle=True,
-        num_workers=4,
-        pin_memory=True,
-        prefetch_factor=2,
-    )
-    results = []
-    with torch.no_grad():
-        for batch_imgs, _, batch_label in tqdm(dataloader):
-            batch_imgs = batch_imgs.to(device)
-            pred = model(batch_imgs).cpu().numpy()
-            pred_class = np.argmax(pred, axis=1)
-
-            for pred_class_index, label in zip(
-                pred_class, batch_label.cpu().numpy()
-            ):
-                if pred_class_index == label:
-                    results.append(1)
-                else:
-                    results.append(0)
-
-    return np.mean(np.array(results))
+    return get_classification_accuracy(model, dset, batch_size, device)
 
 
 def main(
@@ -103,14 +83,10 @@ def main(
     loss_func = torch.nn.CrossEntropyLoss()
 
     # training loop
+    batch_train_losses = []
+    batch_validate_losses = []
     for epoch in range(epochs):
         train_losses = []
-
-        print(
-            round_with_prec(
-                val_step(model, eval_dset, eval_batch_size, device), prec=4
-            )
-        )
 
         for batch_imgs, _, batch_one_hot in (
             pbar_batch := tqdm(train_dataloader)
@@ -129,11 +105,17 @@ def main(
                 f"Epoch {epoch}/{epochs} | Train Loss: {round_with_prec(avg_train_loss, 4)}"
             )
 
-    print(
-        round_with_prec(
+        avg_train_loss = np.mean(np.array(train_losses))
+        val_loss = round_with_prec(
             val_step(model, eval_dset, eval_batch_size, device), prec=4
         )
-    )
+        print(f"Validation loss: {val_loss}")
+
+        batch_train_losses.append(avg_train_loss)
+        batch_validate_losses.append(val_loss)
+        visualize_loss_curves(batch_train_losses, batch_validate_losses)
+
+    visualize_model_predictions(model, eval_dset, eval_batch_size, device)
 
 
 if __name__ == "__main__":

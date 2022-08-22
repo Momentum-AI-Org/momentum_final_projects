@@ -13,3 +13,8 @@ IMG_SIZE = 256
 class IMG_FORMAT(Enum):
     NUMPY: str = "NUMPY"
     PIL: str = "PIL"
+
+
+# results
+RESULTS_DIR = "results"
+EXP_NAME = "v0_basic_model_and_evals"

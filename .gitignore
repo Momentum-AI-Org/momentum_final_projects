@@ -131,3 +131,4 @@ dmypy.json
 snippets.txt
 data/raw_data/*
 data/proc_data/*
+results/*

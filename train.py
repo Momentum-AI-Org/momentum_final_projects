@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader, Dataset
 from torchsummary import summary
 from tqdm import tqdm
 
-from data.bing_dataset import BingDataset
+from data.image_classification_dataset import get_datasets
 from models.img_class_predictor import SimpleCNN
 from utils.constants import IMG_SIZE
 from utils.helpers import round_with_prec
@@ -75,13 +75,10 @@ def main(
 
     """Main training script."""
 
-    train_dset = BingDataset(
-        queries=queries,
-        train=True,
-    )
-    eval_dset = BingDataset(
-        queries=queries,
-        train=False,
+    train_dset, eval_dset = get_datasets(
+        class_names=["Pizza", "Not Pizza"],
+        n_train_per_class=200,
+        n_test_per_class=25,
     )
 
     train_dataloader = DataLoader(

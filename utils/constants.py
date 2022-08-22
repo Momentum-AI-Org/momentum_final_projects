@@ -4,8 +4,7 @@ from enum import Enum
 # data dirs
 RAW_DATA_DIR = os.path.join("data", "raw_data")
 PROC_DATA_DIR = os.path.join("data", "proc_data")
-TRAIN_SUFFIX = "train"
-TEST_SUFFIX = "test"
+CLASS_DATA_INDEX_SUFFIX = "index"
 
 # img processing
 IMG_SIZE = 256

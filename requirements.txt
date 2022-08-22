@@ -1,0 +1,16 @@
+opencv-python
+numpy
+scipy
+pytorch-lightning
+scikit-learn
+pandas
+augly
+pytorch-metric-learning
+torch-summary
+matplotlib
+bing_image_downloader
+
+black==22.6.0
+flake8==5.0.4
+isort==5.10.1
+mypy

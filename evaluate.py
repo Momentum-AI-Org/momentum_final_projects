@@ -59,6 +59,7 @@ def visualize_model_predictions(
     n_cols: int = 6,
     save_dir: str = os.path.join(RESULTS_DIR, EXP_NAME),
     fig_name: str = VIS_MODEL_PREDS_FIG_NAME,
+    show_fig: bool = False,
 ) -> float:
 
     model.eval()
@@ -123,7 +124,10 @@ def visualize_model_predictions(
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     plt.savefig(os.path.join(save_dir, fig_name), bbox_inches="tight")
-    plt.close()
+    if show_fig:
+        plt.show()
+    else:
+        plt.close()
 
 
 def visualize_loss_curves(

@@ -10,6 +10,8 @@ from torch.utils.data import Dataset
 from api.config import ProjectConfig
 from data.dataset_crawler import build_dataset_index
 from data.image_classification_dataset import get_datasets
+from data.visualize_dataset import visualize_dataset_imgs
+from evaluate import get_classification_accuracy, visualize_model_predictions
 from models.img_class_predictor import SimpleCNN
 from train import fit
 from utils.clio import run_command
@@ -102,24 +104,35 @@ def display_img(img: PIL.Image.Image, set_size: bool = False):
     plt.show()
 
 
-def visualize_dataset(num_images):
-    pass
+def visualize_dataset(dataset: Dataset) -> None:
+    visualize_dataset_imgs(dataset, show_fig=True)
 
 
-def evaluate_pretrain_accuracy(model, test_loader):
-    pass
+def evaluate_pretrain_accuracy(
+    model: torch.nn.Module,
+    test_dataset: Dataset,
+) -> float:
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    return get_classification_accuracy(model, test_dataset, 16, device)
 
 
-def display_loss_curves():
+def display_loss_curves() -> None:
     img = Image.open(
         os.path.join(RESULTS_DIR, EXP_NAME, VIS_LOSS_CURVES_FIG_NAME)
     )
     display_img(img, set_size=True)
 
 
-def evaluate_test_accuracy(model, test_loader):
-    pass
+def evaluate_test_accuracy(
+    model: torch.nn.Module,
+    test_dataset: Dataset,
+) -> float:
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    return get_classification_accuracy(model, test_dataset, 16, device)
 
 
-def visualize_predictions(model, test_loader, batch_size):
-    pass
+def visualize_predictions(
+    model: torch.nn.Module, test_dataset: Dataset
+) -> None:
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    visualize_model_predictions(model, test_dataset, 16, device, show_fig=True)

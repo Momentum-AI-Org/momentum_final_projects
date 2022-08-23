@@ -1,8 +1,10 @@
 import os
-from typing import Any, Tuple
+from typing import Tuple
 
+import matplotlib.pyplot as plt
 import PIL
 import torch
+from PIL import Image
 from torch.utils.data import Dataset
 
 from api.config import ProjectConfig
@@ -85,8 +87,16 @@ def train_model(
     fit(model, train_dset, test_dset, epochs, lr)
 
 
-def display(x: Any):
-    x
+def display_img(img: PIL.Image.Image):
+    _, ax = plt.subplots()
+    ax.imshow(img)
+    ax.spines["top"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.spines["bottom"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    plt.show()
 
 
 def visualize_dataset(num_images):
@@ -98,10 +108,10 @@ def evaluate_pretrain_accuracy(model, test_loader):
 
 
 def display_loss_curves():
-    img = PIL.Image.open(
+    img = Image.open(
         os.path.join(RESULTS_DIR, EXP_NAME, VIS_LOSS_CURVES_FIG_NAME)
     )
-    display(img)
+    display_img(img)
 
 
 def evaluate_test_accuracy(model, test_loader):

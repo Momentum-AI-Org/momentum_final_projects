@@ -87,8 +87,11 @@ def train_model(
     fit(model, train_dset, test_dset, epochs, lr)
 
 
-def display_img(img: PIL.Image.Image):
-    _, ax = plt.subplots()
+def display_img(img: PIL.Image.Image, set_size: bool = False):
+    if set_size:
+        _, ax = plt.subplots(figsize=(12, 12))
+    else:
+        _, ax = plt.subplots()
     ax.imshow(img)
     ax.spines["top"].set_visible(False)
     ax.spines["left"].set_visible(False)
@@ -111,7 +114,7 @@ def display_loss_curves():
     img = Image.open(
         os.path.join(RESULTS_DIR, EXP_NAME, VIS_LOSS_CURVES_FIG_NAME)
     )
-    display_img(img)
+    display_img(img, set_size=True)
 
 
 def evaluate_test_accuracy(model, test_loader):

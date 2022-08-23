@@ -78,6 +78,7 @@ def get_model(depth: int, num_filters: int):
     )
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model.to(device)
+    return model
 
 
 def train_model(

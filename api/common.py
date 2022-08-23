@@ -28,13 +28,15 @@ def download_data() -> None:
         ProjectConfig.PROJECT_NAME != PROJECT_TYPE.DEFAULT
     ), "Make sure to set the project name before running this setup script!"
 
-    print(f"Downloading data for project {ProjectConfig.PROJECT_NAME}...")
+    print(
+        f"Downloading data for project {ProjectConfig.PROJECT_NAME}. This may take a few minutes..."
+    )
 
     if not os.path.exists(RAW_DATA_DIR):
         os.makedirs(RAW_DATA_DIR)
 
     commands = [
-        f"wget -q --show-progress {PROJECT_DATASET_ARCHIVES[ProjectConfig.PROJECT_NAME]} -O {DOWNLOADED_DATASET_ARCHIVE_PATH}",
+        f"wget -q {PROJECT_DATASET_ARCHIVES[ProjectConfig.PROJECT_NAME]} -O {DOWNLOADED_DATASET_ARCHIVE_PATH}",
         f"unzip {DOWNLOADED_DATASET_ARCHIVE_PATH} -d {DOWNLOADED_DATASET_DIR}",
     ]
 

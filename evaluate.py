@@ -23,7 +23,7 @@ def get_classification_accuracy(
         dset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=4,
+        num_workers=2,
         pin_memory=True,
         prefetch_factor=2,
     )
@@ -61,7 +61,7 @@ def visualize_model_predictions(
         dset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=4,
+        num_workers=2,
         pin_memory=True,
         prefetch_factor=2,
     )

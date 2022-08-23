@@ -7,14 +7,15 @@ from data.image_classification_dataset import (
     ImageClassificationDataset,
     get_datasets,
 )
-from utils.constants import EXP_NAME, RESULTS_DIR
+from utils.constants import EXP_NAME, RESULTS_DIR, VIS_DSET_FIG_NAME
 
 
-def visualize_dataset(
+def visualize_dataset_imgs(
     dset: ImageClassificationDataset,
     num_imgs_per_class: int = 6,
     save_dir: str = os.path.join(RESULTS_DIR, EXP_NAME),
-    fig_name: str = "dataset_by_class.png",
+    fig_name: str = VIS_DSET_FIG_NAME,
+    show_fig: bool = False,
 ):
 
     if not os.path.exists(save_dir):
@@ -53,7 +54,10 @@ def visualize_dataset(
             ax.axis("off")
 
     plt.savefig(os.path.join(save_dir, fig_name), bbox_inches="tight")
-    plt.close()
+    if show_fig:
+        plt.show()
+    else:
+        plt.close()
 
 
 if __name__ == "__main__":
@@ -63,4 +67,4 @@ if __name__ == "__main__":
         n_test_per_class=25,
     )
 
-    visualize_dataset(train_dset)
+    visualize_dataset_imgs(train_dset)

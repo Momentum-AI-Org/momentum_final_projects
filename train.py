@@ -1,5 +1,3 @@
-from typing import List
-
 import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset
@@ -46,26 +44,21 @@ def val_step(
     return get_classification_accuracy(model, dset, batch_size, device)
 
 
-def main(
-    queries: List[str],
+def fit(
+    model: torch.nn.Module,
+    train_dset: Dataset,
+    eval_dset: Dataset,
     epochs: int,
     lr: float,
     eval_batch_size: int = 16,
 ):
-
     """Main training script."""
-
-    train_dset, eval_dset = get_datasets(
-        class_names=["Pizza", "Not Pizza"],
-        n_train_per_class=200,
-        n_test_per_class=25,
-    )
 
     train_dataloader = DataLoader(
         train_dset,
         batch_size=16,
         shuffle=True,
-        num_workers=4,
+        num_workers=2,
         pin_memory=True,
         prefetch_factor=2,
     )
@@ -73,10 +66,6 @@ def main(
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print(f"Using device {device}")
 
-    model = SimpleCNN(
-        num_classes=len(queries),
-    )
-    summary(model, (3, IMG_SIZE, IMG_SIZE))
     model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
@@ -88,9 +77,8 @@ def main(
     for epoch in range(epochs):
         train_losses = []
 
-        for batch_imgs, _, batch_one_hot in (
-            pbar_batch := tqdm(train_dataloader)
-        ):
+        pbar_batch = tqdm(train_dataloader)
+        for batch_imgs, _, batch_one_hot in pbar_batch:
 
             batch_imgs = batch_imgs.to(device)
             batch_one_hot = batch_one_hot.to(device)
@@ -119,8 +107,21 @@ def main(
 
 
 if __name__ == "__main__":
-    main(
-        queries=["apple_fruit", "orange_fruit"],
+    class_names = ["Pizza", "Not Pizza"]
+    train_dset, eval_dset = get_datasets(
+        class_names=class_names,
+        n_train_per_class=200,
+        n_test_per_class=25,
+    )
+    model = SimpleCNN(
+        num_classes=len(class_names),
+    )
+    summary(model, (3, IMG_SIZE, IMG_SIZE))
+
+    fit(
+        model=model,
+        train_dset=train_dset,
+        eval_dset=eval_dset,
         epochs=30,
         lr=1e-3,
     )

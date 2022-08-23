@@ -7,14 +7,14 @@ from data.image_classification_dataset import (
     ImageClassificationDataset,
     get_datasets,
 )
-from utils.constants import EXP_NAME, RESULTS_DIR
+from utils.constants import EXP_NAME, RESULTS_DIR, VIS_DSET_FIG_NAME
 
 
 def visualize_dataset(
     dset: ImageClassificationDataset,
     num_imgs_per_class: int = 6,
     save_dir: str = os.path.join(RESULTS_DIR, EXP_NAME),
-    fig_name: str = "dataset_by_class.png",
+    fig_name: str = VIS_DSET_FIG_NAME,
 ):
 
     if not os.path.exists(save_dir):

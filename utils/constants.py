@@ -19,6 +19,10 @@ class IMG_FORMAT(Enum):
 RESULTS_DIR = "results"
 EXP_NAME = "v0_basic_model_and_evals"
 
+VIS_DSET_FIG_NAME = "dataset_by_class.png"
+VIS_MODEL_PREDS_FIG_NAME = "model_predictions.png"
+VIS_LOSS_CURVES_FIG_NAME = "loss_curves.png"
+
 
 # running cl commands
 class VERBOSITY(IntEnum):

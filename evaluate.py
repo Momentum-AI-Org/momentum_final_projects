@@ -8,7 +8,12 @@ from mpl_toolkits.axes_grid1 import ImageGrid
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 
-from utils.constants import EXP_NAME, RESULTS_DIR
+from utils.constants import (
+    EXP_NAME,
+    RESULTS_DIR,
+    VIS_LOSS_CURVES_FIG_NAME,
+    VIS_MODEL_PREDS_FIG_NAME,
+)
 
 
 def get_classification_accuracy(
@@ -53,7 +58,7 @@ def visualize_model_predictions(
     n_rows: int = 6,
     n_cols: int = 6,
     save_dir: str = os.path.join(RESULTS_DIR, EXP_NAME),
-    fig_name: str = "model_predictions.png",
+    fig_name: str = VIS_MODEL_PREDS_FIG_NAME,
 ) -> float:
 
     model.eval()
@@ -125,7 +130,7 @@ def visualize_loss_curves(
     train_loss: List[float],
     val_loss: List[float],
     save_dir: str = os.path.join(RESULTS_DIR, EXP_NAME),
-    fig_name: str = "loss_curves.png",
+    fig_name: str = VIS_LOSS_CURVES_FIG_NAME,
 ) -> float:
 
     _, ax1 = plt.subplots()

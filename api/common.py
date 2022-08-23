@@ -1,6 +1,7 @@
 import os
-from typing import Tuple
+from typing import Any, Tuple
 
+import PIL
 import torch
 from torch.utils.data import Dataset
 
@@ -13,11 +14,14 @@ from utils.clio import run_command
 from utils.constants import (
     DOWNLOADED_DATASET_ARCHIVE_PATH,
     DOWNLOADED_DATASET_DIR,
+    EXP_NAME,
     PROJECT_CLASSES,
     PROJECT_DATASET_ARCHIVES,
     PROJECT_TYPE,
     RAW_DATA_DIR,
+    RESULTS_DIR,
     VERBOSITY,
+    VIS_LOSS_CURVES_FIG_NAME,
 )
 
 
@@ -79,3 +83,30 @@ def train_model(
 ) -> None:
     """Train the model."""
     fit(model, train_dset, test_dset, epochs, lr)
+
+
+def display(x: Any):
+    x
+
+
+def visualize_dataset(num_images):
+    pass
+
+
+def evaluate_pretrain_accuracy(model, test_loader):
+    pass
+
+
+def display_loss_curves():
+    img = PIL.Image.open(
+        os.path.join(RESULTS_DIR, EXP_NAME, VIS_LOSS_CURVES_FIG_NAME)
+    )
+    display(img)
+
+
+def evaluate_test_accuracy(model, test_loader):
+    pass
+
+
+def visualize_predictions(model, test_loader, batch_size):
+    pass

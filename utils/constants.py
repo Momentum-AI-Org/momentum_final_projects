@@ -1,5 +1,5 @@
 import os
-from enum import Enum
+from enum import Enum, IntEnum
 
 # data dirs
 RAW_DATA_DIR = os.path.join("data", "raw_data")
@@ -21,7 +21,7 @@ EXP_NAME = "v0_basic_model_and_evals"
 
 
 # running cl commands
-class VERBOSITY(Enum):
+class VERBOSITY(IntEnum):
     NONE = 0
     ERRORS = 1
     WARNINGS = 2

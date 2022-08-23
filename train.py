@@ -77,9 +77,8 @@ def fit(
     for epoch in range(epochs):
         train_losses = []
 
-        for batch_imgs, _, batch_one_hot in (
-            pbar_batch := tqdm(train_dataloader)
-        ):
+        pbar_batch = tqdm(train_dataloader)
+        for batch_imgs, _, batch_one_hot in pbar_batch:
 
             batch_imgs = batch_imgs.to(device)
             batch_one_hot = batch_one_hot.to(device)

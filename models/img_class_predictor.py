@@ -34,6 +34,7 @@ class SimpleCNN(nn.Module):
         for _ in range(depth):
             modules.extend(
                 [
+                    nn.BatchNorm2d(num_filters),
                     nn.ReLU(),
                     nn.MaxPool2d(kernel_size=pool_kernel_size),
                     nn.Conv2d(

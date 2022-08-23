@@ -34,7 +34,7 @@ def download_data() -> None:
         os.makedirs(RAW_DATA_DIR)
 
     commands = [
-        f"curl {PROJECT_DATASET_ARCHIVES[ProjectConfig.PROJECT_NAME]} -o {DOWNLOADED_DATASET_ARCHIVE_PATH}",
+        f"curl {PROJECT_DATASET_ARCHIVES[ProjectConfig.PROJECT_NAME]} -O {DOWNLOADED_DATASET_ARCHIVE_PATH}",
         f"unzip {DOWNLOADED_DATASET_ARCHIVE_PATH} -d {DOWNLOADED_DATASET_DIR}",
     ]
 

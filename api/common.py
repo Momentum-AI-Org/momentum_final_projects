@@ -1,7 +1,14 @@
 import os
+from typing import Tuple
+
+import torch
+from torch.utils.data import Dataset
 
 from api.config import ProjectConfig
 from data.dataset_crawler import build_dataset_index
+from data.image_classification_dataset import get_datasets
+from models.img_class_predictor import SimpleCNN
+from train import fit
 from utils.clio import run_command
 from utils.constants import (
     DOWNLOADED_DATASET_ARCHIVE_PATH,
@@ -32,8 +39,41 @@ def download_data() -> None:
     ]
 
     for command in commands:
-        run_command(command, verbosity=VERBOSITY.DEBUG)
+        run_command(command, VERBOSITY.ERRORS)
 
     build_dataset_index(
         DOWNLOADED_DATASET_DIR, PROJECT_CLASSES[ProjectConfig.PROJECT_NAME]
     )
+
+
+def get_train_test_datasets(
+    num_train_imgs_per_class: int,
+    num_test_imgs_per_class: int,
+) -> Tuple[Dataset, Dataset]:
+    """Get train and test datasets with specified sizes."""
+
+    return get_datasets(
+        class_names=PROJECT_CLASSES[ProjectConfig.PROJECT_NAME],
+        n_train_per_class=num_train_imgs_per_class,
+        n_test_per_class=num_test_imgs_per_class,
+    )
+
+
+def get_model(depth: int, num_filters: int):
+    """Make a model with the specified depth and number of convolutional filters"""
+    return SimpleCNN(
+        num_classes=len(PROJECT_CLASSES[ProjectConfig.PROJECT_NAME]),
+        depth=depth,
+        num_filters=num_filters,
+    )
+
+
+def train_model(
+    model: torch.nn.Module,
+    train_dset: Dataset,
+    test_dset: Dataset,
+    epochs: int,
+    lr: float,
+) -> None:
+    """Train the model."""
+    fit(model, train_dset, test_dset, epochs, lr)

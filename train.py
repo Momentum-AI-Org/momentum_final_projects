@@ -58,7 +58,7 @@ def fit(
         train_dset,
         batch_size=16,
         shuffle=True,
-        num_workers=4,
+        num_workers=2,
         pin_memory=True,
         prefetch_factor=2,
     )

@@ -71,11 +71,13 @@ def get_train_test_datasets(
 
 def get_model(depth: int, num_filters: int):
     """Make a model with the specified depth and number of convolutional filters"""
-    return SimpleCNN(
+    model = SimpleCNN(
         num_classes=len(PROJECT_CLASSES[ProjectConfig.PROJECT_NAME]),
         depth=depth,
         num_filters=num_filters,
     )
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    model.to(device)
 
 
 def train_model(

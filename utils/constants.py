@@ -42,6 +42,7 @@ class PROJECT_TYPE(Enum):
     WEATHER = "WEATHER"
     PERSIANDIGIT = "PERSIANDIGIT"
     MICROORGANISM = "MICROORGANISM"
+    DEVDIGIT = "DEVDIGIT"
 
 
 DOWNLOADED_DATASET_ARCHIVE_PATH = os.path.join(RAW_DATA_DIR, "archive.zip")
@@ -54,6 +55,7 @@ PROJECT_DATASET_ARCHIVES = {
     PROJECT_TYPE.RECAPTCHA: "https://www.dropbox.com/s/s0873h0xa5318qj/archive_recaptcha.zip",
     PROJECT_TYPE.WEATHER: "https://www.dropbox.com/s/sif4kv7oxc2b5lq/archive_weather.zip",
     PROJECT_TYPE.MICROORGANISM: "https://www.dropbox.com/s/o334ofu27xq7boe/microOrganism.zip",
+    PROJECT_TYPE.DEVDIGIT: "https://www.dropbox.com/s/29j9otrmgho37ap/devDigits.zip",
 }
 
 PROJECT_CLASSES = {
@@ -89,5 +91,8 @@ PROJECT_CLASSES = {
     ],
     PROJECT_TYPE.MICROORGANISM: [
         "Amoeba", "Euglena", "Hydra", "Paramecium", "Rod_bacteria", "Spherical_bacteria", "Spiral_bacteria", "Yeast"
-    ]
+    ],
+    PROJECT_TYPE.DEVDIGIT: [
+        "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
+    ],
 }

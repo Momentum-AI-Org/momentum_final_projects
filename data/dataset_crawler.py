@@ -8,7 +8,7 @@ from utils.constants import PROC_DATA_DIR, RAW_DATA_DIR
 
 
 def is_file_of_allowed_type(
-    file_path: str, allowed_file_types: List[str] = [".png", ".jpg"]
+    file_path: str, allowed_file_types: List[str] = [".png", ".jpg", ".jpeg"]
 ) -> bool:
     """Given the path to a file, determine if the file is of an allowed type"""
     for allowed_file_type in allowed_file_types:
@@ -18,7 +18,7 @@ def is_file_of_allowed_type(
 
 
 def crawl_directory(
-    dir: str, allowed_file_types: List[str] = [".png", ".jpg"]
+    dir: str, allowed_file_types: List[str] = [".png", ".jpg", ".jpeg"]
 ) -> List[str]:
     """Crawl a directory and return all files of given types"""
 

@@ -40,6 +40,7 @@ class PROJECT_TYPE(Enum):
     PIZZA = "PIZZA"
     RECAPTCHA = "RECAPTCHA"
     WEATHER = "WEATHER"
+    PERSIANDIGIT = "PERSIANDIGIT"
 
 
 DOWNLOADED_DATASET_ARCHIVE_PATH = os.path.join(RAW_DATA_DIR, "archive.zip")
@@ -51,6 +52,7 @@ PROJECT_DATASET_ARCHIVES = {
     PROJECT_TYPE.PIZZA: "https://www.dropbox.com/s/t68s1vz5r3uzu16/archive_pizza.zip",
     PROJECT_TYPE.RECAPTCHA: "https://www.dropbox.com/s/s0873h0xa5318qj/archive_recaptcha.zip",
     PROJECT_TYPE.WEATHER: "https://www.dropbox.com/s/sif4kv7oxc2b5lq/archive_weather.zip",
+    PROJECT_TYPE.PERSIANDIGIT: "https://www.dropbox.com/s/dmm4snthnfxkh66/persianDigit.zip",
 }
 
 PROJECT_CLASSES = {
@@ -84,4 +86,7 @@ PROJECT_CLASSES = {
         "Sandstorm",
         "Snow",
     ],
+    PROJECT_TYPE.PERSIANDIGIT: [
+        "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
+    ]
 }

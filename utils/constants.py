@@ -40,6 +40,7 @@ class PROJECT_TYPE(Enum):
     PIZZA = "PIZZA"
     RECAPTCHA = "RECAPTCHA"
     WEATHER = "WEATHER"
+    ANIMALS = "ANIMALS"
 
 
 DOWNLOADED_DATASET_ARCHIVE_PATH = os.path.join(RAW_DATA_DIR, "archive.zip")
@@ -51,6 +52,7 @@ PROJECT_DATASET_ARCHIVES = {
     PROJECT_TYPE.PIZZA: "https://www.dropbox.com/s/t68s1vz5r3uzu16/archive_pizza.zip",
     PROJECT_TYPE.RECAPTCHA: "https://www.dropbox.com/s/s0873h0xa5318qj/archive_recaptcha.zip",
     PROJECT_TYPE.WEATHER: "https://www.dropbox.com/s/sif4kv7oxc2b5lq/archive_weather.zip",
+    PROJECT_TYPE.ANIMALS: "https://www.dropbox.com/s/zv9246of90flk1t/archive.zip?dl=0",
 }
 
 PROJECT_CLASSES = {
@@ -83,5 +85,17 @@ PROJECT_CLASSES = {
         "Rime",
         "Sandstorm",
         "Snow",
+    ],
+    PROJECT_TYPE.ANIMALS: [
+        "butterfly",
+        "chicken",
+        "dog",
+        "horse",
+        "spider",
+        "cat",
+        "cow",
+        "elephant",
+        "sheep",
+        "squirrel",
     ],
 }

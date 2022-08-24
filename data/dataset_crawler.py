@@ -8,9 +8,14 @@ from utils.constants import PROC_DATA_DIR, RAW_DATA_DIR
 
 
 def is_file_of_allowed_type(
-    file_path: str, allowed_file_types: List[str] = [".png", ".jpg", ".jpeg"]
+    file_path: str,
+    allowed_file_types: List[str] = [".png", ".jpg", ".jpeg"],
+    disallowed_strings: List[str] = ["__MACOSX"],
 ) -> bool:
     """Given the path to a file, determine if the file is of an allowed type"""
+    for disallowed_string in disallowed_strings:
+        if disallowed_string in file_path:
+            return False
     for allowed_file_type in allowed_file_types:
         if file_path.endswith(allowed_file_type):
             return True
@@ -129,24 +134,24 @@ def build_dataset_index(
 
 
 if __name__ == "__main__":
-    dir_to_crawl = os.path.join(RAW_DATA_DIR, "archive_recaptcha")
-    build_dataset_index(
-        dataset_dir=dir_to_crawl,
-        classes_to_find=[
-            "Bicycle",
-            "Bridge",
-            "Bus",
-            "Car",
-            "Chimney",
-            "Crosswalk",
-            "Hydrant",
-            "Motorcycle",
-            "Other",
-            "Palm",
-            "Stair",
-            "Traffic Light",
-        ],
-    )
+    # dir_to_crawl = os.path.join(RAW_DATA_DIR, "archive_recaptcha")
+    # build_dataset_index(
+    #     dataset_dir=dir_to_crawl,
+    #     classes_to_find=[
+    #         "Bicycle",
+    #         "Bridge",
+    #         "Bus",
+    #         "Car",
+    #         "Chimney",
+    #         "Crosswalk",
+    #         "Hydrant",
+    #         "Motorcycle",
+    #         "Other",
+    #         "Palm",
+    #         "Stair",
+    #         "Traffic Light",
+    #     ],
+    # )
 
     dir_to_crawl = os.path.join(RAW_DATA_DIR, "archive_pizza")
     build_dataset_index(

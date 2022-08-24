@@ -56,7 +56,7 @@ PROJECT_DATASET_ARCHIVES = {
     PROJECT_TYPE.WEATHER: "https://www.dropbox.com/s/sif4kv7oxc2b5lq/archive_weather.zip",
     PROJECT_TYPE.MICROORGANISM: "https://www.dropbox.com/s/o334ofu27xq7boe/microOrganism.zip",
     PROJECT_TYPE.DEVDIGIT: "https://www.dropbox.com/s/29j9otrmgho37ap/devDigits.zip",
-    PROJECT_TYPE.AUTOMOBILE:"https://www.dropbox.com/s/uzddilfpx8b0l90/automobile.zip",
+    PROJECT_TYPE.AUTOMOBILE: "https://www.dropbox.com/s/uzddilfpx8b0l90/automobile.zip",
 }
 
 PROJECT_CLASSES = {
@@ -91,13 +91,29 @@ PROJECT_CLASSES = {
         "Snow",
     ],
     PROJECT_TYPE.MICROORGANISM: [
-        "Amoeba", "Euglena", "Hydra", "Paramecium", "Rod_bacteria", "Spherical_bacteria", "Spiral_bacteria", "Yeast"
+        "Amoeba",
+        "Euglena",
+        "Hydra",
+        "Paramecium",
+        "Rod_bacteria",
+        "Spherical_bacteria",
+        "Spiral_bacteria",
+        "Yeast",
     ],
-    PROJECT_TYPE.DEVDIGIT: [
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
-    ],
+    PROJECT_TYPE.DEVDIGIT: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
     PROJECT_TYPE.AUTOMOBILE: [
-        "Bevel-gear", "bearing", "clutch", "cylincer", "filter", "fuel-tank", "helical_gear", "piston", "rack-pinion", 
-        "shocker", "spark-plug", "spur-gear", "valve", "wheel"
+        "Bevel-gear",
+        "bearing",
+        "clutch",
+        "cylincer",
+        "filter",
+        "fuel-tank",
+        "helical_gear",
+        "piston",
+        "rack-pinion",
+        "shocker",
+        "spark-plug",
+        "spur-gear",
+        "wheel",  # , "valve"
     ],
 }

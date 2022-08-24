@@ -134,24 +134,24 @@ def build_dataset_index(
 
 
 if __name__ == "__main__":
-    # dir_to_crawl = os.path.join(RAW_DATA_DIR, "archive_recaptcha")
-    # build_dataset_index(
-    #     dataset_dir=dir_to_crawl,
-    #     classes_to_find=[
-    #         "Bicycle",
-    #         "Bridge",
-    #         "Bus",
-    #         "Car",
-    #         "Chimney",
-    #         "Crosswalk",
-    #         "Hydrant",
-    #         "Motorcycle",
-    #         "Other",
-    #         "Palm",
-    #         "Stair",
-    #         "Traffic Light",
-    #     ],
-    # )
+    dir_to_crawl = os.path.join(RAW_DATA_DIR, "archive_recaptcha")
+    build_dataset_index(
+        dataset_dir=dir_to_crawl,
+        classes_to_find=[
+            "Bicycle",
+            "Bridge",
+            "Bus",
+            "Car",
+            "Chimney",
+            "Crosswalk",
+            "Hydrant",
+            "Motorcycle",
+            "Other",
+            "Palm",
+            "Stair",
+            "Traffic Light",
+        ],
+    )
 
     dir_to_crawl = os.path.join(RAW_DATA_DIR, "archive_pizza")
     build_dataset_index(

@@ -40,6 +40,9 @@ class PROJECT_TYPE(Enum):
     PIZZA = "PIZZA"
     RECAPTCHA = "RECAPTCHA"
     WEATHER = "WEATHER"
+    MICROORGANISM = "MICROORGANISM"
+    DEVDIGIT = "DEVDIGIT"
+    AUTOMOBILE = "AUTOMOBILE"
     ANIMALS = "ANIMALS"
 
 
@@ -52,6 +55,9 @@ PROJECT_DATASET_ARCHIVES = {
     PROJECT_TYPE.PIZZA: "https://www.dropbox.com/s/t68s1vz5r3uzu16/archive_pizza.zip",
     PROJECT_TYPE.RECAPTCHA: "https://www.dropbox.com/s/s0873h0xa5318qj/archive_recaptcha.zip",
     PROJECT_TYPE.WEATHER: "https://www.dropbox.com/s/sif4kv7oxc2b5lq/archive_weather.zip",
+    PROJECT_TYPE.MICROORGANISM: "https://www.dropbox.com/s/o334ofu27xq7boe/microOrganism.zip",
+    PROJECT_TYPE.DEVDIGIT: "https://www.dropbox.com/s/29j9otrmgho37ap/devDigits.zip",
+    PROJECT_TYPE.AUTOMOBILE: "https://www.dropbox.com/s/uzddilfpx8b0l90/automobile.zip",
     PROJECT_TYPE.ANIMALS: "https://www.dropbox.com/s/zv9246of90flk1t/archive.zip?dl=0",
 }
 
@@ -86,6 +92,31 @@ PROJECT_CLASSES = {
         "Sandstorm",
         "Snow",
     ],
+    PROJECT_TYPE.MICROORGANISM: [
+        "Amoeba",
+        "Euglena",
+        "Hydra",
+        "Paramecium",
+        "Rod_bacteria",
+        "Spherical_bacteria",
+        "Spiral_bacteria",
+        "Yeast",
+    ],
+    PROJECT_TYPE.DEVDIGIT: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+    PROJECT_TYPE.AUTOMOBILE: [
+        "Bevel-gear",
+        "bearing",
+        "clutch",
+        "cylincer",
+        "filter",
+        "fuel-tank",
+        "helical_gear",
+        "piston",
+        "rack-pinion",
+        "shocker",
+        "spark-plug",
+        "spur-gear",
+        "wheel",  # , "valve"
     PROJECT_TYPE.ANIMALS: [
         "butterfly",
         "chicken",

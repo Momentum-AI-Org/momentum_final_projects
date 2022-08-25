@@ -117,6 +117,7 @@ PROJECT_CLASSES = {
         "spark-plug",
         "spur-gear",
         "wheel",  # , "valve"
+    ],
     PROJECT_TYPE.ANIMALS: [
         "butterfly",
         "chicken",

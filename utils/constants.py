@@ -43,6 +43,7 @@ class PROJECT_TYPE(Enum):
     MICROORGANISM = "MICROORGANISM"
     DEVDIGIT = "DEVDIGIT"
     AUTOMOBILE = "AUTOMOBILE"
+    ANIMALS = "ANIMALS"
 
 
 DOWNLOADED_DATASET_ARCHIVE_PATH = os.path.join(RAW_DATA_DIR, "archive.zip")
@@ -57,6 +58,7 @@ PROJECT_DATASET_ARCHIVES = {
     PROJECT_TYPE.MICROORGANISM: "https://www.dropbox.com/s/o334ofu27xq7boe/microOrganism.zip",
     PROJECT_TYPE.DEVDIGIT: "https://www.dropbox.com/s/29j9otrmgho37ap/devDigits.zip",
     PROJECT_TYPE.AUTOMOBILE: "https://www.dropbox.com/s/uzddilfpx8b0l90/automobile.zip",
+    PROJECT_TYPE.ANIMALS: "https://www.dropbox.com/s/zv9246of90flk1t/archive.zip?dl=0",
 }
 
 PROJECT_CLASSES = {
@@ -115,5 +117,16 @@ PROJECT_CLASSES = {
         "spark-plug",
         "spur-gear",
         "wheel",  # , "valve"
+    PROJECT_TYPE.ANIMALS: [
+        "butterfly",
+        "chicken",
+        "dog",
+        "horse",
+        "spider",
+        "cat",
+        "cow",
+        "elephant",
+        "sheep",
+        "squirrel",
     ],
 }
